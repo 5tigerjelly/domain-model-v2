@@ -21,6 +21,47 @@ class MoneyTests: XCTestCase {
   let fifteenEUR = Money(amount: 15, currency: "EUR")
   let fifteenCAN = Money(amount: 15, currency: "CAN")
   
+    ////////////////////////////////////////////////
+    //Unit test made to check if descrition() works
+    //
+  func testDescrition(){
+    XCTAssert(tenUSD.description() == "USD10")
+    XCTAssert(twelveUSD.description() == "USD12")
+    XCTAssert(fiveGBP.description() == "GBP5")
+    XCTAssert(fifteenEUR.description() == "EUR15")
+  }
+    
+    ////////////////////////////////////////////////
+    //Unit test made to check if money+,- operation works
+    //
+    func testPlusMinusOperation(){
+        let twoentyUSD = tenUSD+twelveUSD
+        XCTAssert(twoentyUSD.description() == "USD22")
+        let twoUSD = twelveUSD-tenUSD
+        XCTAssert(twoUSD.description() == "USD2")
+        let threeCAN = Money(amount: 3, currency: "CAN")
+        let eightteenCAN = fifteenCAN+threeCAN
+        XCTAssert(eightteenCAN.description() == "CAN18")
+        let twelveCAN = fifteenCAN-threeCAN
+        XCTAssert(twelveCAN.description() == "CAN12")
+    }
+    
+    ////////////////////////////////////////////////
+    //Unit test made to check if money+,- operation works
+    //
+    func testExtension(){
+        let tenYEN = 10.0.YEN
+        XCTAssert(tenYEN.description() == "YEN10")
+        let fiveEUR = 5.0.EUR
+        XCTAssert(fiveEUR.description() == "EUR5")
+        let fivtythreeUSD = 53.0.USD
+        XCTAssert(fivtythreeUSD.description() == "USD53")
+        let twentyfourGBP = 24.0.GBP
+        XCTAssert(twentyfourGBP.description() == "GBP24")
+        let thirtyfiveEUR = 35.0.EUR
+        XCTAssert(thirtyfiveEUR.description() == "EUR35")
+    }
+    
   func testCanICreateMoney() {
     let oneUSD = Money(amount: 1, currency: "USD")
     XCTAssert(oneUSD.amount == 1)

@@ -26,27 +26,7 @@ protocol CustomStringConvertible{
     func description() -> String
 }
 
-protocol Mathematics {
-    func + (left : Money, right : Money) -> Money
-    func - (left : Money, right : Money) -> Money
-}
 
-public func + (left: Money, right: Money) -> Money{
-    return Money(amount: left.amount + right.amount, currency: left.currency)
-}
-
-public func - (left: Money, right: Money) -> Money{
-    return Money(amount: left.amount - right.amount, currency: left.currency)
-}
-
-////////////////////////////////////
-// extension
-extension Double {
-    var USD: Money { return Money(amount: Int(self), currency: "USD") }
-    var EUR: Money { return Money(amount: Int(self), currency: "EUR") }
-    var GBP: Money { return Money(amount: Int(self), currency: "GBP") }
-    var YEN: Money { return Money(amount: Int(self), currency: "YEN") }
-}
 
 
 ////////////////////////////////////
@@ -88,6 +68,35 @@ public struct Money : CustomStringConvertible, Mathematics{
             return Money(amount: newmoney.amount-from.amount, currency: currency)
         }
     }
+}
+
+////////////////////////////////////
+//Protocol
+protocol Mathematics {
+    func + (left : Money, right : Money) -> Money
+    func - (left : Money, right : Money) -> Money
+}
+
+////////////////////////////////////
+//Money plus operation
+public func + (left: Money, right: Money) -> Money{
+    return Money(amount: left.amount + right.amount, currency: left.currency)
+}
+
+////////////////////////////////////
+
+public func - (left: Money, right: Money) -> Money{
+    return Money(amount: left.amount - right.amount, currency: left.currency)
+}
+
+////////////////////////////////////
+//Money minus operation
+// extension
+extension Double {
+    var USD: Money { return Money(amount: Int(self), currency: "USD") }
+    var EUR: Money { return Money(amount: Int(self), currency: "EUR") }
+    var GBP: Money { return Money(amount: Int(self), currency: "GBP") }
+    var YEN: Money { return Money(amount: Int(self), currency: "YEN") }
 }
 
 ////////////////////////////////////
