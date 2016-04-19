@@ -27,13 +27,16 @@ protocol CustomStringConvertible{
 }
 
 protocol Mathematics {
-    func + (left : Money, right : Money) -> Money {
+    func + (left : Money, right : Money) -> Money
+    func - (left : Money, right : Money) -> Money
+}
 
-    }
-    
-    func - (left : Money, right : Money) -> Money {
-    
-    }
+public func + (left: Money, right: Money) -> Money{
+    return Money(amount: left.amount + right.amount, currency: left.currency)
+}
+
+public func - (left: Money, right: Money) -> Money{
+    return Money(amount: left.amount - right.amount, currency: left.currency)
 }
 
 ////////////////////////////////////
@@ -84,10 +87,6 @@ public struct Money : CustomStringConvertible, Mathematics{
             let newmoney = self.convert(from.currency)
             return Money(amount: newmoney.amount-from.amount, currency: currency)
         }
-    }
-    
-    public func + (left: Money, right: Money) -> Money{
-        return
     }
 }
 
